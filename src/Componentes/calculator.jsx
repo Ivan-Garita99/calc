@@ -1,0 +1,206 @@
+"use client";
+
+import React, { useState } from 'react';
+import styles from '../Styles/body.module.css'; // Quitando el styles from llama la hoja de estilos 
+//import './Styles.css'  // Funciona solo si esta dentro de la de componentes
+/*const Container = {
+    background: "#f09443"
+}*/
+
+
+function Calculator() {
+    const [value, setValue] = useState('');
+    const [result, setResult] = useState('');
+    const [operator, setOperator] = useState('');
+
+    const handleButtonPress = (buttonValue) => {    //maneja el evento de clic en los botones de la calculadora y toma el valor del botón presionado como argumento y actualiza el estado de la calculadora concatenando ese valor al valor actual.
+        // Asignacion de los botones 
+        setValue(value + buttonValue);
+
+    }
+    const deleteLastChar = () => {
+        setValue(value.slice(0, value.length - 1));  //Borra el valor del dato -1
+
+    }
+
+    const resultChar = () => {
+        setValue(eval(value))                          //eval ejecuta js 
+    }
+
+    const calculatorStyle = {      //para cambiar el fondo de color, calculator agrega obejeto para personalizar color de fondo
+        backgroundColor: '#232D46', //Se define el color y luego en la variable "style" se define el estilo 
+
+    };
+
+    const resetChar = () => {
+        setValue("")
+    }
+
+    const buttonStyle = {
+        backgroundColor: 'blue',
+        padding: '10px 20px',
+        border: 'none',
+        borderRadius: '5px',
+        margin: '5px',
+        cursor: 'pointer',
+    };
+    // ---> {/* Asi se hace un comentario en jsx */} <---
+    return (
+
+
+        <div style={calculatorStyle}>  {/* Al div se le pone la variable style y transcribimos la const para llamarlo */}
+
+            <p style={{ color: "white" }} >CALC JS</p>
+
+            {/* Este input es el contebedor de la calc y sus operaciones, el backgroundcolor es para cambiar el fondo de ese contenedor y se debe declarar tipo text */}
+
+            <input className='cajita' style={{ backgroundColor: 'rgba(23, 31, 52, 1)', color: "white", padding: '10px 20px', border: 'none', borderRadius: '5px', margin: '5px', cursor: 'pointer' }} type="text" value={value} readOnly />
+
+            <div className="">
+                <button onClick={() => handleButtonPress('7')}>7</button>
+                <button onClick={() => handleButtonPress('8')}>8</button>
+                <button onClick={() => handleButtonPress('9')}>9</button>
+                <style jsx>{`
+                .{
+                //margin: 50px;  
+                }
+                button {
+                //color: #232D46;
+                }`}
+                </style>
+                <button color="#ECE3DA" className='DEL' onClick={() => deleteLastChar()}>
+                    {'DEL'}
+                </button>
+
+            </div>
+
+            <div>
+
+            </div>
+
+            <div className=''>
+                <button onClick={() => handleButtonPress('4')}>4</button>
+                <button onClick={() => handleButtonPress('5')}>5</button>
+                <button onClick={() => handleButtonPress('6')}>6</button>
+                <style jsx>{`
+                .{
+                //margin: 50px;
+                }
+                button {
+                color: #232D46;
+                }`}
+                </style>
+                <button className='operations' onClick={() => handleButtonPress('+')}>+</button>
+                <style jsx>{`
+                        .{
+                        //margin: 50px;
+                        }
+                        button {
+                        color: #232D46;
+                        }`}
+                </style>
+            </div>
+            {/* ctrl+d para borrar de cajon varias lineas que tengas seleccionado */}
+            <div>
+                <button onClick={() => handleButtonPress('1')}>1</button>
+                <button onClick={() => handleButtonPress('2')}>2</button>
+                <button onClick={() => handleButtonPress('3')}>3</button>
+                <style jsx>{`
+                .{
+                //margin: 50px;
+                }
+                button {
+                color: #232D46;
+                }`}
+                </style>
+                <button className='operations' onClick={() => handleButtonPress('-')}>-</button>
+                <style jsx>{`
+                        .{
+                        //margin: 50px;
+                        }
+                        button {
+                        color: #232D46;
+                        }`}
+                </style>
+            </div>
+
+            <div>
+                <button onClick={() => handleButtonPress('0')}>0</button>
+                <button onClick={() => handleButtonPress('.')}>.</button>
+                <style jsx>{`
+                .{
+                //margin: 50px;
+                }
+                button {
+                color: #232D46;
+                }`}
+                </style>
+                <button className='' onClick={() => handleButtonPress('/')}>/</button>
+                <style jsx>{`
+                    .{
+                    //margin: 50px;
+                    }
+                    button {
+                    color: #232D46;
+                    }`}
+                </style>
+
+                <button /*style={{ backgroundColor: 'rgba(236, 227, 218, 1)', padding: '10px 20px', border: 'none', borderRadius: '5px', margin: '5px', cursor: 'pointer' }}*/ className='operations' onClick={() => handleButtonPress('*')}>*</button>
+                <style jsx>{`
+                        .{
+                        //margin: 50px;
+                        }
+                        button {
+                        color: #232D46;
+                        }`}
+                </style>
+
+
+            </div>
+
+
+
+
+           
+
+
+
+            
+
+           
+
+
+
+            <div>
+                <button className='RESET' onClick={() => resetChar()}>
+                    {'RESET'}
+                </button>
+                <style jsx>{`
+                .{
+                //margin: 50px;
+                }
+                button {
+                color: #ECE3DA;
+                }`}
+                </style>
+
+                <button className='red' onClick={() => resultChar()}>
+                    {'='}
+                </button>
+                <style jsx>{`
+                .{
+                //margin: 50px;
+                }
+                button {
+                color: #ECE3DA;
+                }`}
+                </style>
+            </div>
+
+
+        </div>
+    );
+}
+
+export default Calculator;
+
